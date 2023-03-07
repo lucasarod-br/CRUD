@@ -1,4 +1,4 @@
-import moment from 'moment/src/moment';
+import moment from 'moment';
 
 
 const nome = document.querySelector(".inputNome");
