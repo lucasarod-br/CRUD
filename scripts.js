@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from './node_modules/moment/moment.js';
 
 
 const nome = document.querySelector(".inputNome");
