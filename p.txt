@@ -1,6 +1,0 @@
-Colocar lista ao lado do formulário, estilizar lista. 
-
-Aumentar botão e formulário
-
-criar git e fazer o deploy
-

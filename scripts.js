@@ -20,22 +20,12 @@ const limparInput = () => {
   nome.value = "";
   nascimento.value = "";
 };
+// função para formatar a data de nascimento de AAAA-MM-DD para DD mês com três primeiras letras AAAA
 
-    const formatBornDate = (date) => {
-
-        const data = new Date(date);
-        const timezoneOffset = data.getTimezoneOffset(); // obtem o deslocamento do fuso horário em minutos
-        const dataComFuso = new Date(data.getTime() - (timezoneOffset * 60 * 1000)); // ajusta a data para o fuso horário local
-        const dataUTC = new Date(Date.UTC(dataComFuso.getUTCFullYear(), dataComFuso.getUTCMonth(), dataComFuso.getUTCDate()));
-        const opcoes = { 
-        day: '2-digit', 
-        month: 'short', 
-        year: 'numeric' 
-        };
-        
-        const dataFormatada = dataUTC.toLocaleString('pt-BR', opcoes);
-        return dataFormatada
-    };
+const formatBornDate = (date) => {
+  const dataLocal = moment(date);
+  return dataLocal.format("DD [de] MMM [de] YYYY");
+};
 
 const cadastrar = () => {
   const pessoas = pegaDados();
@@ -112,21 +102,3 @@ const criarLinha = (elemento) => {
 
 mostraDados();
 botao.addEventListener("click", cadastrar);
-
-/* 
-
- const item = document.createElement('tr')
-
-    
-        const nomeAtual = document.createElement('td')
-        nomeAtual.innerText = pessoa.nome
-        item.appendChild(nomeAtual)
-
-        const nascimentoAtual = document.createElement('td')
-        nascimentoAtual.innerText = pessoa.nascimento
-        item.appendChild(nascimentoAtual)
-  
-        tabela.appendChild(item)
-    
-        nome.value = ''
-*/
