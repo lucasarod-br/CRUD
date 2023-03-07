@@ -1,9 +1,8 @@
-
-
 const nome = document.querySelector(".inputNome");
 const nascimento = document.querySelector(".nascimento");
 const botao = document.querySelector("button");
 const tabela = document.querySelector("table");
+const form = document.querySelector("form");
 
 const pegaDados = () => {
   return JSON.parse(localStorage.getItem("pessoas")) || [];
@@ -22,18 +21,21 @@ const limparInput = () => {
   nome.value = "";
   nascimento.value = "";
 };
-// função para formatar a data de nascimento de AAAA-MM-DD para DD mês com três primeiras letras AAAA
-
 const formatBornDate = (date) => {
   const dataLocal = moment(date);
+  if (!dataLocal.isValid()) {
+    console.error("Data inválida!");
+    return "";
+  }
   return dataLocal.format("DD [de] MMM [de] YYYY");
 };
 
-const cadastrar = () => {
+const cadastrar = (e) => {
+  e.preventDefault();
   const pessoas = pegaDados();
   const dado = {
     nome: nome.value,
-    nascimento: formatBornDate(nascimento.value),
+    nascimento: nascimento.value,
   };
 
   criarLinha(dado);
@@ -44,12 +46,12 @@ const cadastrar = () => {
 const editar = (elemento) => {
   const pessoas = pegaDados();
   botao.innerHTML = "Atualizar";
-
   nome.value = elemento.nome;
   nascimento.value = elemento.nascimento;
 
-  botao.removeEventListener("click", cadastrar);
-  botao.addEventListener("click", () => {
+  form.removeEventListener("submit", cadastrar);
+  form.addEventListener("submit", e => {
+    e.preventDefault()
     pessoas.map((item) => {
       if (elemento.nome == item.nome) {
         item.nome = nome.value;
@@ -82,7 +84,7 @@ const criarLinha = (elemento) => {
   item.appendChild(nomeAtual);
 
   const nascimentoAtual = document.createElement("td");
-  nascimentoAtual.innerText = elemento.nascimento;
+  nascimentoAtual.innerText = formatBornDate(elemento.nascimento);
   item.appendChild(nascimentoAtual);
 
   const botaoExcluir = document.createElement("i");
@@ -103,4 +105,4 @@ const criarLinha = (elemento) => {
 };
 
 mostraDados();
-botao.addEventListener("click", cadastrar);
+form.addEventListener("submit", cadastrar);
