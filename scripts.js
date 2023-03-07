@@ -1,5 +1,5 @@
 
-import moment from "moment";
+const moment = require("moment");
 
 const nome = document.querySelector(".inputNome");
 const nascimento = document.querySelector(".nascimento");
