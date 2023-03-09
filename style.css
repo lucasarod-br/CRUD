@@ -44,7 +44,7 @@ form {
 
 div {
     text-align: center;
-    width: 70%;
+    width: 90%;
     max-width: 620px;
     padding: 1rem;
 }
@@ -88,9 +88,10 @@ button {
 }
 
 table {
-    font-size: 16px;
+    font-size: 14px;
+    white-space: nowrap;
     @media (min-width: 768px) {
-    font-size: 22px;
+    font-size: 18px;
         
     }
     width: 70%;
@@ -104,7 +105,7 @@ table {
     align-items: center;
     padding: 1rem;
     justify-content: center;
-    width: 70%;
+    width: 90%;
 }
 
 tr {
