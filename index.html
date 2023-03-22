@@ -5,33 +5,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>CRUD com local storage</title>
 </head>
 
-<body>
-    <div>
+<body class="bg-slate-600 text-slate-100 box-border flex flex-col items-center">
+    <h1 class="text-xl font-bold text-center mt-4 ">CRUD persistente</h1>
+    <div class="flex justify-center mt-4 w-full md:w-8/12">
+        <form
+            class="flex flex-col justify-center items-center py-4 px-2 w-64 rounded-md  bg-slate-700 border-solid border-slate-100 border-4 md:w-6/12">
+
+            <label for="nome" class="flex flex-col w-full md:w-8/12">Nome:
+
+                <input type="text" name="nome" id="nome" class="bg-transparent rounded-lg border-2 "
+                    placeholder="Digite seu nome..." maxlength="120" minlength="3" required
+                    pattern="^^[A-Z][a-z]+(\s[A-Z][a-z]+)?$">
+            </label>
+
+            <label for="nascimento" class="flex flex-col w-full mt-4 md:w-8/12">Data de nascimento:
+                <input type="date" name="nascimento" id="nascimento" class="bg-transparent rounded-lg border-2 "
+                    min="1900-01-01" max="2023-01-01" required>
+
+            </label>
 
 
-        <h1>CRUD persistente</h1>
-        <form>
-
-            <label for="nome">Nome e sobrenome</label>
-            <input type="text" name="nome" id="nome" class="inputNome" placeholder="Digite seu nome..." maxlength="120"
-                minlength="3" required pattern="^[A-Za-zç]+\s[A-Za-zç]+$">
-
-            <label for="nascimento">Data de nascimento</label>
-            <input  type="date" name="nascimento" id="nascimento" class="nascimento" min="1900-01-01" max="2023-01-01" required>
-
-
-            <button type="submit">Cadastrar</button>
+            <button class="bg-slate-900 w-full mt-4 py-4 rounded-lg md:w-8/12 lg:hover:bg-slate-100 lg:hover:text-slate-900" type="submit">Cadastrar</button>
 
         </form>
     </div>
 
-    <table>
+    <table class="table-auto border-separate border-spacing-2 border border-slate-500 w-full mt-6 md:w-6/12">
+        
         <tr>
-            <td>Lista</td>
+            <td class="border border-slate-600 font-bold">Nome</td>
+            <td class="border border-slate-600 font-bold">Nascimento</td>
+            <td class="border border-slate-600 font-bold">Ações</td>
+
         </tr>
     </table>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>

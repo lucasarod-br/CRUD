@@ -1,5 +1,4 @@
-const nome = document.querySelector(".inputNome");
-const nascimento = document.querySelector(".nascimento");
+const [nome, nascimento] = document.querySelectorAll("input");
 const botao = document.querySelector("button");
 const tabela = document.querySelector("table");
 const form = document.querySelector("form");
@@ -18,8 +17,10 @@ const atualizarDados = (pessoas) => {
 };
 
 const limparInput = () => {
-  nome.value = "";
-  nascimento.value = "";
+  if (nome && nascimento) {
+    nome.value = "";
+    nascimento.value = "";
+  }
 };
 const formatBornDate = (date) => {
   const dataLocal = moment(date);
@@ -87,18 +88,20 @@ const criarLinha = (elemento) => {
   nascimentoAtual.innerText = formatBornDate(elemento.nascimento);
   item.appendChild(nascimentoAtual);
 
+  const acoes = document.createElement("td");
+  acoes.classList.add("flex", "gap-4");
+
   const botaoExcluir = document.createElement("i");
-  botaoExcluir.classList.add("fa-solid");
-  botaoExcluir.classList.add("fa-trash");
+  botaoExcluir.classList.add("fa-solid", "cursor-pointer", "fa-trash");
   botaoExcluir.addEventListener("click", () => deletar(elemento));
-  item.appendChild(botaoExcluir);
+  acoes.appendChild(botaoExcluir);
 
   const botaoEditar = document.createElement("i");
-  botaoEditar.classList.add("fa-solid");
-  botaoEditar.classList.add("fa-pen-to-square");
+  botaoEditar.classList.add("fa-solid", "fa-pen-to-square", "cursor-pointer");
   botaoEditar.addEventListener("click", () => editar(elemento));
-  item.appendChild(botaoEditar);
+  acoes.appendChild(botaoEditar);
 
+  item.appendChild(acoes);
   tabela.appendChild(item);
 
   limparInput();
